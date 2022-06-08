@@ -1,105 +1,113 @@
-// the javascript object map uses hash table.
-// it has methods for inserting new pair of key and value, deleting and modifying.
-
-const collection = new Map();
-
-collection.set("Nathan", "555-0182");
-collection.set("Jane", "315-0322");
-
-// for (let [key, value] of collection) {
-//   console.log(`${key} = ${value}`);
-// }
-
-
-// ----------------------------------------------------------------------------
-// Let's write your own hash table!
-// ----------------------------------------------------------------------------
-
-class HashTable {
-  constructor() {
-    this.table = new Array(127);
-    this.size = 0;
-  }
-
-  _hash(key) {
-    let hash = 0;
-    for (let i = 0; i < key.length; i++) {
-      hash += key.charCodeAt(i);
-    }
-
-    return hash % this.table.length;
-  }
-
-  set(key, value) {
-    const index = this._hash(key);
-    if (this.table[index]) {
-      for (let i = 0; i < this.table[index].length; i++) {
-        if (this.table[index][i][0] === key) {
-          this.table[index][i][1] = value;
-          return;
-        }
-      }
-      this.table[index].push([key, value]);
-    }else {
-      this.table[index] = [];
-      this.table[index].push([key,value]);
-    }
-    this.size++;
-  }
-
-  get(key) {
-    const index = this._hash(key);
-    if (this.table[index] && this.table[index].length > 1) {
-      for (let i = 0; i < this.table[index].length; i++) {
-        if (this.table[index][i][0] === key) {
-          return this.table[index][i];
-        }
-      }
-      return;
-    }
-    return this.table[index][0];
-  }
-
-  getSize() {
-    return this.size;
-  }
-
-  display() {
-    this.table.map(element => {
-      if (!element) return;
-      console.log(element);
-    })
-  }
-
-  remove(key) {
-    const index = this._hash(key);
-    if (this.table[index]) {
-      for (let i = 0; i < this.table[index].length; i++) {
-        if (this.table[index][i][0] === key) {
-          this.table[index].splice(i,1);
-          this.size--;
-          return true;
-        }
-      }
-    }else {
-      return false;
-    }
+class Node {
+  constructor(key, val) {
+    this.key = key;
+    this.val = val;
+    this.next = null;
   }
 }
 
-// Test the hashtable
-const ht = new HashTable();
+class HashTable {
+  constructor(size) {
+    this.table = new Array(size);
+  }
 
-ht.set("France", 111);
-ht.set("Spain", 150);
-ht.set("ǻ", 192);
+  _yieldHash = (key) => {
+    return key % this.table.length;
+  };
 
-ht.display();
-// 83: [ France: 111 ]
-// 126: [ Spain: 150 ],[ ǻ: 192 ]
+  insert = (key, val) => {
+    const node = new Node(key, val);
+    const hash = this._yieldHash(key);
+    if (this.table[hash] == undefined) {
+      this.table[hash] = node; //if there is already an element, you should use forward linked list to manage it -> chain method.
+    } else {
+      let current = this.table[hash];
+      while (current.next !== null) {
+        current = current.next;
+      }
+      current.next = node;
+    }
+  };
 
-console.log(ht.size); // 3
-ht.remove("Spain");
-ht.display();
-// 83: [ France: 111 ]
-// 126: [ ǻ: 192 ]
+  delete = (key) => {
+    const hash = this._yieldHash(key);
+    let node = this.search(key);
+    if (node === null) {
+      console.log(`key ${key} not found`);
+      return null;
+    }
+    console.log(`Deleting node => key:${node.key} val:${node.val}`);
+    if (node === this.table[hash]) {
+      this.table[hash] = node.next;
+      node.next = null;
+    } else {
+      let prevNode = this.table[hash];
+      node = prevNode.next;
+      while (true) {
+        if (node.key === key) {
+          prevNode.next = node.next;
+          node.next = null;
+          break;
+        }
+        prevNode = prevNode.next;
+        node = node.next;
+      }
+    }
+    console.log("Deletion Complete");
+  };
+
+  search = (key) => {
+    const hash = this._yieldHash(key);
+    let node = this.table[hash];
+    if (node === undefined) return null;
+    while (node.key !== key) {
+      if (node.next !== null) {
+        node = node.next;
+      } else if (node.next === null) {
+        return null;
+      } else {
+        break;
+      }
+    }
+    console.log(
+      `Search Result for ${key}: Key: ${node.key} Value: ${node.val}`
+    );
+    return node;
+  };
+
+  display = () => {
+    console.log("--------------------------------------");
+    for (let i = 0; i < this.table.length; i++) {
+      if (this.table[i] === undefined) {
+        console.log(`${i}: undefined`);
+      } else {
+        let node = this.table[i];
+        let row = i + ": ";
+        while (true) {
+          row += `{key: ${node.key},val: ${node.val}}`;
+          if (node.next === null) {
+            break;
+          }
+          row += " => ";
+          node = node.next;
+        }
+        console.log(row);
+      }
+    }
+    console.log("--------------------------------------");
+  };
+}
+
+const hashTable = new HashTable(10);
+
+hashTable.insert(3, "Alice");
+hashTable.insert(12, "Bob");
+hashTable.insert(233, "Chris");
+hashTable.insert(95, "David");
+hashTable.insert(183, "Eav");
+hashTable.insert(25, "George");
+
+hashTable.display();
+const x = hashTable.search(0);
+hashTable.delete(95);
+hashTable.display();
