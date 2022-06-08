@@ -1,20 +1,16 @@
-const bubbleSort = (array) => {
-  for (let i = 0; i < array.length; i++) {
-    for (let j = array.length - 1 ; j >= -1; j-- ){
-      if (array[j] <= array[j - 1]) {
-        const temp = array[j - 1];
-        array[j - 1] = array[j];
-        array[j] = temp;
+const bubbleSort = (arr) => {
+  for (let i = 0; i < arr.length - 1; i++) {
+    for (let j = arr.length - 1; j >= i; j--) {
+      if (arr[j] <= arr[j - 1]) {
+        const temp = arr[j - 1];
+        arr[j - 1] = arr[j];
+        arr[j] = temp;
       }
-      console.log(array);
     }
   }
-  return array;
-}
+  return arr;
+};
 
+const array = [5, 9, 2, 1, 7, 3, 4, 6, 8, 0];
 
-let array = [5,1,3,2,4];
-
-let sortedArray = bubbleSort(array);
-
-console.log(sortedArray);
+exports.sort = bubbleSort;
