@@ -31,10 +31,11 @@ class FLLqueue {
       return null;
     }
     const result = this.head;
-    if (this.head.next === null) {
+    if (this.head.next) {
+      this.head = this.head.next;
+    } else {
       this.tail = null;
     }
-    this.head = this.head.next;
     return result;
   }
 
