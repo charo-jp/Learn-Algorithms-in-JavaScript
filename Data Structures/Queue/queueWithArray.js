@@ -10,10 +10,7 @@ class MyQueue {
   }
 
   _isEmpty() {
-    if (this.head === null && this.tail === null) {
-      return true;
-    }
-    return false;
+    return !!(this.head === null && this.tail === null);
   }
 
   enqueue(num) {

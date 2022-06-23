@@ -1,4 +1,4 @@
-class MyElement {
+class Element {
   constructor(val) {
     this.val = val;
     this.next = null;
@@ -31,15 +31,21 @@ class DLLQueue {
       return null;
     }
     const result = this.head;
-    this.head = this.head.next;
-    this.head.prev = null;
+    if (this.head.next) {
+      this.head = this.head.next;
+      this.head.prev = null;
+    } else {
+      this.head = null;
+      this.tail = null;
+    }
     return result;
   }
+
   display() {
     if (this._isEmpty()) {
       return "There is no list available!";
     }
-    let result = "[ ";
+    let result = "Exit [ ";
     let current = this.head;
     while (true) {
       if (current === null) {
@@ -48,20 +54,23 @@ class DLLQueue {
       result += `${current.val.toString()} `;
       current = current.next;
     }
-    result += "]";
+    result += "] Entrance";
     return result;
   }
 }
 
-let e1 = new MyElement(1);
-let e2 = new MyElement(2);
-let e3 = new MyElement(3);
-let e4 = new MyElement(4);
-let e5 = new MyElement(5);
-let e6 = new MyElement(6);
+const e1 = new Element(1);
+const e2 = new Element(2);
+const e3 = new Element(3);
+const e4 = new Element(4);
+const e5 = new Element(5);
+const e6 = new Element(6);
 
 const my_queue = new DLLQueue();
 my_queue.enqueue(e1);
+console.log(my_queue.display());
+my_queue.dequeue();
+console.log(my_queue.display());
 my_queue.enqueue(e2);
 my_queue.enqueue(e3);
 my_queue.enqueue(e4);
