@@ -1,5 +1,4 @@
 // Forward Linked List Queue
-
 class Element {
   constructor(val) {
     this.val = val;
@@ -35,13 +34,14 @@ class FLLqueue {
       this.head = this.head.next;
     } else {
       this.tail = null;
+      this.head = null;
     }
     return result;
   }
 
   display = () => {
     if (this._isEmpty()) {
-      return "There is no list available!";
+      return "There is no element!";
     }
     let result = "Exit[ ";
     let current = this.head;
@@ -56,24 +56,31 @@ class FLLqueue {
     return result;
   };
 }
-
+// ----------------------------------------------
 const e1 = new Element(1);
 const e2 = new Element(2);
 const e3 = new Element(3);
 const e4 = new Element(4);
 const e5 = new Element(5);
-const node1000 = new Element(1000);
 
 const queue = new FLLqueue();
 queue.enqueue(e1);
+console.log(queue.display());
+// Exit[ 1 ] Entrance
 queue.dequeue();
 console.log(queue.display());
+// There is no element!
 queue.enqueue(e2);
 queue.enqueue(e3);
 queue.enqueue(e4);
 queue.enqueue(e5);
 console.log(queue.display());
+// Exit[ 2 3 4 5 ] Entrance
 queue.dequeue();
 queue.dequeue();
+queue.dequeue();
+queue.dequeue();
+// making sure that is works properly when there is no element in a queue.
 queue.dequeue();
 console.log(queue.display());
+// There is no element!

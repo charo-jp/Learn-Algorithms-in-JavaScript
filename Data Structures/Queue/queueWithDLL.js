@@ -5,7 +5,7 @@ class Element {
     this.prev = null;
   }
 }
-// There are in total two operations to which you can maniputate.
+
 class DLLQueue {
   constructor() {
     this.head = null;
@@ -43,7 +43,7 @@ class DLLQueue {
 
   display() {
     if (this._isEmpty()) {
-      return "There is no list available!";
+      return "There is no element!";
     }
     let result = "Exit [ ";
     let current = this.head;
@@ -69,13 +69,17 @@ const e6 = new Element(6);
 const my_queue = new DLLQueue();
 my_queue.enqueue(e1);
 console.log(my_queue.display());
+// Exit [ 1 ] Entrance
 my_queue.dequeue();
 console.log(my_queue.display());
+// There is no element!
 my_queue.enqueue(e2);
 my_queue.enqueue(e3);
 my_queue.enqueue(e4);
 my_queue.enqueue(e5);
 my_queue.enqueue(e6);
 console.log(my_queue.display());
+// Exit [ 2 3 4 5 6 ] Entrance
 my_queue.dequeue();
 console.log(my_queue.display());
+// Exit [ 3 4 5 6 ] Entrance

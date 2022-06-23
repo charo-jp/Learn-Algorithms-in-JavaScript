@@ -6,7 +6,7 @@ Enqueue
 In enqueue method, firstly it checks whether a queue is empty. If that is the case, set an argument as a head. When a queue is not empty, simply add an element at the end of a queue and set an argument as a tail.
 
 Dequeue
-First of all, it needs to make sure that a queue is not empty. After confirming that it is not an empty, it stores the head of a queue and remove it from a queue.
+First of all, it needs to make sure that a queue is not empty. After confirming that it is not an empty, it stores the head of a queue and remove it from a queue. Be careful for a fact that operation is different when a queue stores only one element; it is necessary to take care of the tail as well.
 
 Display
 It simply displays what is in a queue.
@@ -17,4 +17,4 @@ You can implement queue with DLL but it would be better if you implement it with
 
 Queue with Forward Linked List
 
-Among these
+The only thing that is differnet between DLL and FLL is the existence of prev pointer. Therefore, FLL is actually easier to implement.
