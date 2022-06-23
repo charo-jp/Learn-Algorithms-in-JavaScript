@@ -40,19 +40,18 @@ class FLLqueue {
   }
 
   display = () => {
-    let result = "[ ";
-
-    let nextValue = this.head;
-    if (!nextValue) return "[ ]";
-    result += nextValue.val + " ";
+    if (this._isEmpty()) {
+      return "There is no list available!";
+    }
+    let result = "Exit[ ";
+    let current = this.head;
     while (true) {
-      nextValue = nextValue.next;
-      if (nextValue) {
-        result += nextValue.val + " ";
-      } else {
-        result += "]";
+      if (current === null) {
+        result += "] Entrance";
         break;
       }
+      result += current.val + " ";
+      current = current.next;
     }
     return result;
   };

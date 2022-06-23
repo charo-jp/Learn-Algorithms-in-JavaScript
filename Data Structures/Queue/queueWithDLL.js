@@ -51,7 +51,7 @@ class DLLQueue {
       if (current === null) {
         break;
       }
-      result += `${current.val.toString()} `;
+      result += current.val + " ";
       current = current.next;
     }
     result += "] Entrance";
