@@ -4,14 +4,14 @@ const bmSearch = (text, key) => {
   }
   const table = new Map();
   const others = key.length;
-  for (let i = 0; i < key.length; i++) {
-    table.set(key[i], key.length - 1 - i);
+  for (let k = 0; k < key.length; k++) {
+    table.set(key[k], key.length - 1 - k);
   }
 
   console.log(table);
   let i = key.length - 1;
   while (i < text.length) {
-    j = key.length - 1;
+    let j = key.length - 1;
     while (text[i] === key[j]) {
       if (j === 0) {
         return i;
@@ -19,12 +19,17 @@ const bmSearch = (text, key) => {
       j -= 1;
       i -= 1;
     }
-    i +=  
+    if (table.get(text[i])) {
+      i += table.get(text[i]);
+    } else {
+      i += others;
+    }
   }
 };
 
-const TEXT = "ATCTGAATGCGTAAGC";
-const KEY = "TGCG";
+const TEXT = "Charo was happy after walking around the house.";
+const KEY = "after";
 
 const INDEX = bmSearch(TEXT, KEY);
 console.log(`Range of ${KEY} in a Text: ${INDEX} ~ ${INDEX + KEY.length - 1}`);
+console.log(TEXT[INDEX] + " " + TEXT[INDEX + KEY.length - 1]);
