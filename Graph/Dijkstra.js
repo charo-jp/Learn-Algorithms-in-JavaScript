@@ -10,10 +10,12 @@ class Vertex {
     this.distance = INFTY;
   }
 
+  // This helps compare instances of class Vertex.
   valueOf() {
     return this.distance;
   }
 }
+
 const relax = (u, v) => {
   if (v.distance > u.distance + u.adj.get(v.id)) {
     v.distance = u.distance + u.adj.get(v.id);
@@ -26,9 +28,11 @@ const relax = (u, v) => {
 const dijkstra = (vertices, src) => {
   src.distance = 0;
   const queue = new Heap();
+
   vertices.forEach((vertex) => {
     queue.push(vertex);
   });
+
   while (queue.nodes.length > 0) {
     let printHeap = "[ ";
     queue.nodes.forEach((i) => {
@@ -39,6 +43,7 @@ const dijkstra = (vertices, src) => {
     const u = queue.pop();
     u.adj.forEach((value, i) => {
       if (relax(u, vertices[i])) {
+        // Smaller dist should be prioritized.
         queue.heapify();
       }
     });
