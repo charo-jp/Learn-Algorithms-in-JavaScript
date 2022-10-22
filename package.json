@@ -1,0 +1,20 @@
+{
+  "name": "learn-algorithms-in-javascript",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "practice.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/charo-jp/Data-Structures-and-Algorithms-in-JavaScript.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/charo-jp/Data-Structures-and-Algorithms-in-JavaScript/issues"
+  },
+  "homepage": "https://github.com/charo-jp/Data-Structures-and-Algorithms-in-JavaScript#readme"
+}
