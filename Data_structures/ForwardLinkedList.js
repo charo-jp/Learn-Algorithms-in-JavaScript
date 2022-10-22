@@ -21,14 +21,18 @@ export class ForwardLinkedList {
   }
 
   display = () => {
-    let result = "[ ";
+    let result = "[ Head => ";
     let nextValue = this.head;
     if (!nextValue) return "No value";
     result += nextValue.val + ", ";
     while (true) {
       nextValue = nextValue.next;
       if (nextValue) {
-        result += nextValue.val + ", "
+        if (nextValue.next){
+          result += nextValue.val + ", ";
+        }else {
+          result += nextValue.val + " => null";
+        }
       } else {
         result += "]";
         break;
@@ -73,11 +77,11 @@ export class ForwardLinkedList {
   } 
 }
 
-let linkedList = new ForwardLinkedList();
-linkedList.push(new Node(1));
-linkedList.push(new Node(2));
-linkedList.push(new Node(3));
-linkedList.push(new Node(4));
-linkedList.push(new Node(5));
-console.log(linkedList.display());
-console.log(linkedList.display());
+// let linkedList = new ForwardLinkedList();
+// linkedList.push(new Node(1));
+// linkedList.push(new Node(2));
+// linkedList.push(new Node(3));
+// linkedList.push(new Node(4));
+// linkedList.push(new Node(5));
+// console.log(linkedList.display());
+// console.log(linkedList.display());
