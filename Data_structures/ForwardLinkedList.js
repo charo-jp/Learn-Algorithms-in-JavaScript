@@ -1,14 +1,13 @@
 // when pushing, a node will be at the first of the list. Head should be changed.
 // Forward Linked List with singly Linked List
-
-export class Node  {
+class Node  {
   constructor(val) {
     this.val = val;
     this.next = null;
   }
 }
 
-export class ForwardLinkedList {
+class ForwardLinkedList {
   constructor() {
     this.head = null;
   }
@@ -77,11 +76,16 @@ export class ForwardLinkedList {
   } 
 }
 
-// let linkedList = new ForwardLinkedList();
-// linkedList.push(new Node(1));
-// linkedList.push(new Node(2));
-// linkedList.push(new Node(3));
-// linkedList.push(new Node(4));
-// linkedList.push(new Node(5));
-// console.log(linkedList.display());
-// console.log(linkedList.display());
+
+if (process.argv[1].includes("ForwardLinkedList.js")){
+  let linkedList = new ForwardLinkedList();
+  linkedList.push(new Node(1));
+  linkedList.push(new Node(2));
+  linkedList.push(new Node(3));
+  linkedList.push(new Node(4));
+  linkedList.push(new Node(5));
+  console.log(linkedList.display());
+  console.log(linkedList.display());
+}
+
+export {Node, ForwardLinkedList}
