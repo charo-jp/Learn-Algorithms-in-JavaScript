@@ -120,3 +120,4 @@ binarytree.delete(y);
 console.log("----------------------------------------");
 
 binarytree.traverse(binarytree.root);
+// fdakfd
