@@ -9,8 +9,6 @@
  */
 
 const kadaneAlgo = (arr) => {
-  const length = arr.length;
-
   // max_ending_here stores the sum of current subarray
   let max_ending_here = 0;
   // max_so_far stores the max sum of contagious subarray found so far
@@ -21,9 +19,8 @@ const kadaneAlgo = (arr) => {
     end = 0,
     s = 0;
 
-  for (let i = 0; i < length; i++) {
+  for (let i = 0; i < arr.length; i++) {
     max_ending_here += arr[i];
-
     if (max_so_far < max_ending_here) {
       max_so_far = max_ending_here;
       start = s;
@@ -43,7 +40,7 @@ const kadaneAlgo = (arr) => {
   return resturnObject;
 };
 
-const array = [-2, -3, 4, -1, -2, 1, 5, -3];
+const array = [-2, -3, -1, -2, -3];
 const result = kadaneAlgo(array);
 console.log("SUM    : " + result.sum);
 console.log("Start  : " + result.start + " Val      : " + array[result.start]);

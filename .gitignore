@@ -1,3 +1,4 @@
 node_modules/
-practice.js
+./practice.js
 Master_the_coding_interview_FAANG_interviews/test.js
+./.vscode
